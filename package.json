@@ -1,17 +1,17 @@
 {
   "name": "moire-1",
   "scripts": {
-    "start": "beefy index.js:bundle.js -- --open",
+    "start": "budo index.js:bundle.js",
     "bundle": "browserify index.js -o bundle.js"
   },
   "dependencies": {
-    "beefy": "^2.1.1",
-    "browserify": "^5.11.1",
+    "browserify": "^12.0.1",
     "canvas-fit": "^1.2.0",
     "canvas-orbit-camera": "^1.0.0",
     "gl-buffer": "^2.0.9",
     "gl-context": "^0.1.0",
     "gl-matrix": "^2.1.0",
+    "gl-shader": "^4.0.6",
     "gl-texture2d": "git://github.com/stackgl/gl-texture2d#fix-dim-check",
     "gl-vao": "^1.2.0",
     "glsl-hsv2rgb": "^1.0.0",
@@ -24,5 +24,8 @@
     "transform": [
       "glslify"
     ]
+  },
+  "devDependencies": {
+    "budo": "^6.1.0"
   }
 }

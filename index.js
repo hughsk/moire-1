@@ -7,6 +7,7 @@ var rotateZ     = require('gl-matrix').quat.rotateZ
 var identity    = require('gl-matrix').quat.identity
 var Analyser    = require('web-audio-analyser')
 var Texture2d   = require('gl-texture2d')
+var Shader      = require('gl-shader')
 var Buffer      = require('gl-buffer')
 var ndarray     = require('ndarray')
 var glslify     = require('glslify')
@@ -44,10 +45,10 @@ var line = VAO(gl, [{
 }])
 
 var start  = Date.now()
-var shader = glslify({
-    vert: './line.vert'
-  , frag: './line.frag'
-})(gl)
+var shader = Shader(gl
+  , glslify('./line.vert')
+  , glslify('./line.frag')
+)
 
 camera.distance = 5
 
@@ -66,7 +67,8 @@ require('soundcloud-badge')({
     analyser = Analyser(audio)
   }, false)
 
-  audio.src  = src
+  audio.crossOrigin = 'Anonymous'
+  audio.src = src
   audio.addEventListener('ended', function() {
     console.log('ended')
     audio.currentTime = 0
